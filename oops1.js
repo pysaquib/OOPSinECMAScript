@@ -1,10 +1,10 @@
 const secret = new WeakMap();                                       //Used to create private properties
 
 class Human{                                                        //Parent class Human
-    constructor(name, age, sex){                                    //Initializes an object when class is instantiated
+    constructor(name, age, gender){                                    //Initializes an object when class is instantiated
         this.name = name;                                           //this keyword assigns value passed from instance or child class
         this.age = age;
-        this.sex = sex;
+        this.gender = gender;
     }
     eat(){                                                          //method of parent class
         return `${this.name} is eating!`;
@@ -12,14 +12,14 @@ class Human{                                                        //Parent cla
     ageOf(){                                                          //method of parent class         
         return `${this.name} is ${this.age} years old.`;
     }
-    sex(){                                                          //method of parent class
-        return `${this.name} is a ${this.sex}`;
+    gender(){                                                          //method of parent class
+        return `${this.name} is a ${this.gender}`;
     }
 }
 
 class Student extends Human{                                        //Child class of Human inheriting its properties and methods
-    constructor(name, age, sex, subject, language){                 //Initializes an object when class is instantiated
-        super(name, age, sex)                                       //Super is a method that sets the inheritance properties calling the parent class
+    constructor(name, age, gender, subject, language){                 //Initializes an object when class is instantiated
+        super(name, age, gender)                                       //Super is a method that sets the inheritance properties calling the parent class
         this.subject = subject
         this.language = language
     }
@@ -30,13 +30,13 @@ class Student extends Human{                                        //Child clas
         return `${this.name} can programme in ${this.language}.`    //Method of child class
     }
     details(){                                                      //Method of child class
-        return `${super.sex()} and ${super.ageOf()}`
+        return `${super.gender()} and ${super.ageOf()}`
     }
 }
 
 class Employee extends Human{                       
-    constructor(name, age, sex, position, location, salary){
-        super(name, age, sex)
+    constructor(name, age, gender, position, location, salary){
+        super(name, age, gender)
         this.position = position
         this.location = location
         secret.set(this, {_salary : salary})                        //Private property initialized
@@ -50,8 +50,8 @@ class Employee extends Human{
 }
 
 class Teacher extends Human{
-    constructor(name, age, sex, university, teaches){
-        super(name, age, sex)                       
+    constructor(name, age, gender, university, teaches){
+        super(name, age, gender)                       
         this.university = university
         secret.set(this, {_teaches : teaches})
     }
